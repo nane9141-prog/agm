@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>정관 관리 — AGM IR Admin</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.26.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<link rel="stylesheet" href="./park-ui.css" /><link rel="stylesheet" href="./rapidpay.css" />
+</head><body>
+<aside class="rp-nav">
+  <div class="rp-brand">
+    <div class="rp-tile"><i class="ti ti-vote"></i></div>
+    <div style="flex:1"><div class="rp-co">삼성전자 주식회사</div><div class="rp-nm">제67기 주총</div></div>
+    <i class="ti ti-selector" style="color:var(--fg-subtle)"></i>
+  </div>
+  <div class="rp-scroll">
+
+    <div class="rp-sec">회사</div>
+    <a class="rp-row" href="./dashboard.html" data-nav="dashboard"><i class="ti ti-layout-dashboard"></i>대시보드</a>
+    <a class="rp-row" href="./shareholders.html" data-nav="shareholders"><i class="ti ti-users"></i>주주명부 관리</a>
+    <a class="rp-row active" href="./articles.html" data-nav="articles"><i class="ti ti-file-description"></i>정관 관리</a>
+
+    <div class="rp-sec">주주총회</div>
+    <div class="rp-ig">
+      <button class="rp-ig-hd" data-ig aria-expanded="true"><span class="rp-ig-dot"></span>제67기 정기주총<i class="ti ti-chevron-down rp-ig-chev"></i></button>
+      <div class="rp-ig-body" data-open="true">
+        <a class="rp-sub" href="./settings.html" data-nav="settings">기본설정<span class="rp-sdot" style="background:var(--green-9)"></span></a>
+        <a class="rp-sub" href="./agenda.html" data-nav="agenda">의안설정<span class="rp-sdot" style="background:var(--amber-9)"></span></a>
+        <a class="rp-sub" href="./prevote.html" data-nav="prevote">사전투표/위임<span class="rp-sdot" style="background:var(--kc)"></span></a>
+        <a class="rp-sub" href="./live.html" data-nav="live">주주총회 진행<span class="rp-sdot" style="background:var(--slate-7)"></span></a>
+        <a class="rp-sub" href="./result.html" data-nav="result">주주총회 결과<span class="rp-sdot" style="background:var(--slate-7)"></span></a>
+      </div>
+    </div>
+
+    <div class="rp-sec">글로벌</div>
+    <a class="rp-row" href="./templates.html" data-nav="templates"><i class="ti ti-template"></i>템플릿 관리</a>
+    <a class="rp-row" href="./audit.html" data-nav="audit"><i class="ti ti-clipboard-list"></i>감사로그</a>
+  </div>
+  <div class="rp-foot">
+    <div class="rp-user"><span class="av">KP</span><div style="flex:1"><div style="font-size:13px;font-weight:600">관리자</div><div style="font-size:11px;color:var(--fg-subtle)">주총 담당자</div></div><i class="ti ti-dots" style="color:var(--fg-subtle)"></i></div>
+    <div class="rp-copy">© 2027 Samsung Electronics · AGM Admin v2.0</div>
+  </div>
+</aside>
+<script>document.querySelectorAll('[data-ig]').forEach(function(b){b.addEventListener('click',function(){var x=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!x));b.parentElement.querySelector('.rp-ig-body').setAttribute('data-open',String(!x));});});</script>
+
+<div class="rp-shell"><div class="rp-scrollmain">
+<div class="rp-crumb"><i class="ti ti-file-description" style="font-size:16px"></i>정관 관리<span class="r"><span><i class="ti ti-clock" style="font-size:14px;vertical-align:-2px"></i> 2분 전 업데이트</span><a class="reload" href="#"><i class="ti ti-refresh" style="font-size:14px"></i>새로고침</a></span></div>
+<div class="rp-head"><div><div class="rp-h1">정관 관리</div><div class="rp-h1-sub">현행 정관 조문·개정 이력·개정 예정</div></div>
+<div class="rp-actions"><button class="btn btn-surface"><i class="ti ti-download"></i>개정본 다운로드</button><button class="btn btn-kc"><i class="ti ti-git-compare"></i>개정 예정 보기</button></div></div>
+<div class="rp-segtabs" style="margin-bottom:14px"><button class="rp-segtab active">정관 조문</button><button class="rp-segtab">개정 이력</button><button class="rp-segtab">개정 예정</button></div>
+<div style="display:grid;grid-template-columns:280px 1fr;gap:16px;align-items:start">
+<div class="rp-card" style="padding:12px"><div class="rp-srch" style="margin-bottom:6px"><i class="ti ti-search"></i><input placeholder="조문 검색…"></div><div style="font-size:12px;font-weight:700;color:var(--fg-subtle);margin:12px 0 6px">제1장 총칙</div><a href="#" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;font-size:13.5px;color:var(--fg-muted)">제1조 (상호)</a><a href="#" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;font-size:13.5px;color:var(--fg-muted)">제2조 (목적)</a><a href="#" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;font-size:13.5px;color:var(--fg-muted)">제3조 (본점 소재지)</a><div style="font-size:12px;font-weight:700;color:var(--fg-subtle);margin:12px 0 6px">제2장 주식</div><a href="#" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;font-size:13.5px;color:var(--fg-muted)">제5조 (발행 주식 총수)</a><a href="#" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;font-size:13.5px;color:var(--fg-muted)">제8조 (주식의 종류)<span class="badge badge-warning" style="margin-left:auto">개정 예정</span></a><div style="font-size:12px;font-weight:700;color:var(--fg-subtle);margin:12px 0 6px">제3장 주주총회</div><a href="#" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;font-size:13.5px;color:var(--fg-muted)">제17조 (소집)</a><a href="#" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;font-size:13.5px;color:var(--fg-muted)">제18조 (의장)</a><a href="#" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;font-size:13.5px;color:var(--fg-muted)" style="background:var(--kc-sub);color:var(--kc-tx);font-weight:600">제19조 (의결권)<span class="badge badge-warning" style="margin-left:auto">개정 예정</span></a><a href="#" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;font-size:13.5px;color:var(--fg-muted)">제21조 (결의 방법)</a><div style="font-size:12px;font-weight:700;color:var(--fg-subtle);margin:12px 0 6px">제4장 이사·이사회</div><a href="#" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;font-size:13.5px;color:var(--fg-muted)">제30조 (이사의 수)</a><a href="#" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;font-size:13.5px;color:var(--fg-muted)">제31조 (집중투표)<span class="badge badge-warning" style="margin-left:auto">개정 예정</span></a></div>
+<div class="rp-card" style="padding:22px 24px">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:4px"><div style="font-size:18px;font-weight:700">제19조 (의결권)</div><span class="pill2 st-pending">개정 예정</span></div>
+<div class="subtle" style="font-size:12px;margin-bottom:16px">제3장 주주총회</div>
+<div style="font-size:14px;line-height:1.8;color:var(--fg-muted)">① 주주의 의결권은 1주마다 1개로 한다.<br>② 회사가 가진 자기주식에 대하여는 의결권이 없다.<br>③ 감사위원회위원이 되는 이사의 선임에 있어서는 발행주식총수의 100분의 3을 초과하는 수의 주식을 가진 주주는 그 초과하는 주식에 관하여 의결권을 행사하지 못한다.</div>
+<div class="alert alert-info" style="margin-top:18px"><i class="ti ti-link"></i><div><div class="alert-title">연결된 의안</div><div class="alert-desc">제5호 정관 일부 변경의 건 — 의결권 행사 단위 조정안과 연계되어 있습니다.</div></div></div>
+<div style="font-weight:600;margin:20px 0 8px">최근 개정 이력</div>
+<div style="font-size:13px;color:var(--fg-muted);display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;gap:10px"><span class="badge badge-neutral">수정</span><span>2024.03.26 · 제66기 — 3%cap 문구 명확화</span></div>
+<div style="display:flex;gap:10px"><span class="badge badge-success">신설</span><span>2021.03.19 · 제63기 — 전자투표 조항 신설</span></div>
+</div>
+</div></div>
+<div class="rp-ask"><span class="logo"><i class="ti ti-vote" style="font-size:13px"></i></span><input placeholder="주총·의결권에 대해 무엇이든 물어보세요…" /><span class="go"><i class="ti ti-arrow-up"></i></span></div>
+</div></div></body></html>

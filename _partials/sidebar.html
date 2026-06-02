@@ -1,0 +1,46 @@
+<!-- SIDEBAR (Park UI) — copy verbatim into each page; set .active on the current item.
+     Logo SVG: reuse Nexsr logo from agm-new pages. Replace data-active markers per page. -->
+<aside class="sb">
+  <div class="sb-brand">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="875 520 170 46" style="height:22px" aria-label="Nexsr" role="img">
+      <defs><style>.cls-1{fill:#1c2024}</style></defs>
+      <path class="cls-1" d="M981.29,557.98c-1.5,0-2.9-.2-4.18-.59-1.28-.4-2.44-1-3.49-1.8-1.04-.81-1.97-1.8-2.79-2.99l2.93-3.37c1.29,1.85,2.54,3.13,3.72,3.84,1.19.71,2.6,1.07,4.24,1.07,1,0,1.91-.16,2.73-.48.82-.32,1.47-.75,1.94-1.31s.71-1.19.71-1.9c0-.48-.08-.92-.24-1.35-.16-.42-.4-.81-.73-1.15-.33-.34-.75-.66-1.27-.95-.51-.29-1.12-.55-1.8-.77-.69-.22-1.48-.42-2.38-.57-1.43-.29-2.67-.67-3.72-1.15-1.06-.48-1.94-1.07-2.65-1.78s-1.24-1.52-1.58-2.44c-.34-.91-.51-1.93-.51-3.07s.24-2.14.73-3.09c.49-.95,1.16-1.78,2.02-2.48.86-.7,1.87-1.24,3.03-1.62,1.16-.38,2.42-.57,3.76-.57,1.43,0,2.73.19,3.92.55,1.19.37,2.24.92,3.17,1.64.92.73,1.69,1.62,2.3,2.67l-3.01,2.97c-.53-.87-1.12-1.6-1.78-2.2-.66-.59-1.39-1.04-2.18-1.35-.79-.3-1.64-.46-2.54-.46-1.03,0-1.93.16-2.69.48-.77.32-1.37.76-1.8,1.33-.44.57-.65,1.24-.65,2,0,.55.11,1.06.32,1.52.21.46.53.87.97,1.23.44.36,1.02.67,1.76.95.74.28,1.62.52,2.65.73,1.45.32,2.75.72,3.88,1.21s2.1,1.06,2.89,1.72c.79.66,1.39,1.4,1.8,2.22.41.82.61,1.7.61,2.65,0,1.77-.41,3.3-1.23,4.59-.82,1.29-1.98,2.29-3.49,2.99-1.51.7-3.3,1.05-5.39,1.05Z"/>
+      <path class="cls-1" d="M997.45,557.58v-27.73h11.8c1.58,0,3.04.39,4.38,1.17,1.33.78,2.4,1.84,3.19,3.17.79,1.33,1.19,2.83,1.19,4.5,0,1.5-.4,2.91-1.19,4.2-.79,1.29-1.85,2.33-3.17,3.11-1.32.78-2.79,1.17-4.4,1.17h-7.53v10.42h-4.28ZM1001.73,543.05h7.92c.77,0,1.45-.19,2.06-.57s1.08-.91,1.43-1.58c.34-.67.52-1.42.52-2.24,0-.92-.22-1.74-.65-2.44-.44-.7-1.04-1.25-1.82-1.64-.78-.4-1.66-.59-2.63-.59h-6.81v9.07ZM1013.93,557.58l-7.05-12.52,4.4-.99,7.84,13.55-5.19-.04Z"/>
+      <path class="cls-1" d="M883,557.58v-27.73h7.01l13.47,18.46-1.62-.4c-.13-.98-.24-1.86-.34-2.65-.09-.79-.17-1.54-.24-2.26-.07-.71-.12-1.43-.16-2.14-.04-.71-.06-1.49-.06-2.34v-8.67h7.57v27.73h-7.09l-14.5-19.81,2.73.67c.13,1.08.24,2.02.34,2.81.09.79.17,1.5.22,2.14s.1,1.24.14,1.82c.04.58.07,1.2.08,1.86.01.66.02,1.41.02,2.26v8.24h-7.57Z"/>
+      <path class="cls-1" d="M915.2,557.58v-27.73h20.16v6.46h-12.64v14.81h13.23v6.46h-20.76ZM918.92,546.57v-6.1h14.85v6.1h-14.85Z"/>
+      <g><g><polygon class="cls-1" points="959.36 557.58 949.07 543.73 954.76 540.2 967.85 557.58 959.36 557.58"/><polygon class="cls-1" points="967.85 529.86 954.76 547.24 949.07 543.71 959.36 529.86 967.85 529.86"/></g><g><polygon class="cls-1" points="947.15 557.58 957.43 543.73 951.75 540.2 938.65 557.58 947.15 557.58"/><polygon class="cls-1" points="938.65 529.86 951.75 547.24 957.43 543.71 947.15 529.86 938.65 529.86"/></g></g>
+    </svg>
+  </div>
+  <nav class="sb-nav">
+    <a class="nav-item" data-nav="dashboard" href="./dashboard.html"><i class="ti ti-layout-dashboard"></i>대시보드</a>
+    <a class="nav-item" data-nav="shareholders" href="./shareholders.html"><i class="ti ti-users"></i>주주명부 관리</a>
+    <a class="nav-item" data-nav="articles" href="./articles.html"><i class="ti ti-file-description"></i>정관 관리</a>
+    <div class="sb-div"></div>
+    <div class="sb-sec">주주총회</div>
+    <div class="ig">
+      <button class="ig-hd" data-ig aria-expanded="true"><span class="live-dot"></span><i class="ti ti-calendar-event" style="font-size:14px;color:var(--fg-subtle)"></i>제67기 정기주총<i class="ti ti-chevron-down ig-chev"></i></button>
+      <div class="ig-body" data-open="true">
+        <a class="ig-link" data-nav="settings" href="./settings.html">기본설정<span class="w-dot" style="width:6px;height:6px;border-radius:50%;background:var(--green-9)"></span></a>
+        <a class="ig-link" data-nav="agenda" href="./agenda.html">의안설정<span class="badge badge-warning" style="height:18px;padding:0 6px"><i class="ti ti-alert-triangle"></i>2</span></a>
+        <a class="ig-link" data-nav="prevote" href="./prevote.html">사전투표/위임<span class="live-dot"></span></a>
+        <a class="ig-link" data-nav="live" href="./live.html">현장진행<span style="width:6px;height:6px;border-radius:50%;background:var(--slate-7)"></span></a>
+        <a class="ig-link" data-nav="result" href="./result.html">결과보고<span style="width:6px;height:6px;border-radius:50%;background:var(--slate-7)"></span></a>
+      </div>
+    </div>
+    <div class="ig">
+      <button class="ig-hd" data-ig aria-expanded="false"><span style="width:7px;height:7px;border-radius:50%;background:var(--slate-9)"></span><i class="ti ti-calendar-event" style="font-size:14px;color:var(--fg-subtle)"></i>제66기 정기주총<i class="ti ti-chevron-down ig-chev"></i></button>
+      <div class="ig-body" data-open="false">
+        <a class="ig-link" href="./settings.html">기본설정<span style="width:6px;height:6px;border-radius:50%;background:var(--green-9)"></span></a>
+        <a class="ig-link" href="./agenda.html">의안설정<span style="width:6px;height:6px;border-radius:50%;background:var(--green-9)"></span></a>
+        <a class="ig-link" href="./prevote.html">사전투표/위임<span style="width:6px;height:6px;border-radius:50%;background:var(--green-9)"></span></a>
+      </div>
+    </div>
+    <div class="sb-div"></div>
+    <a class="nav-item" href="#"><i class="ti ti-template"></i>템플릿</a>
+    <a class="nav-item" href="#"><i class="ti ti-clipboard-list"></i>감사로그</a>
+  </nav>
+  <div class="sb-foot">
+    <div class="sb-user"><div class="avatar">KP</div><div><div style="font-size:13px;font-weight:600">관리자</div><div style="font-size:12px;color:var(--fg-subtle)">Admin</div></div></div>
+  </div>
+</aside>
+<script>document.querySelectorAll('[data-ig]').forEach(b=>b.addEventListener('click',()=>{const x=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',!x);b.parentElement.querySelector('.ig-body').setAttribute('data-open',!x);}));</script>

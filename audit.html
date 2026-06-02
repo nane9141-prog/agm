@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>감사로그 — AGM IR Admin</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.26.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<link rel="stylesheet" href="./park-ui.css" />
+<link rel="stylesheet" href="./rapidpay.css" />
+</head>
+<body>
+<aside class="rp-nav">
+  <div class="rp-brand">
+    <div class="rp-tile"><i class="ti ti-vote"></i></div>
+    <div style="flex:1"><div class="rp-co">삼성전자 주식회사</div><div class="rp-nm">제67기 주총</div></div>
+    <i class="ti ti-selector" style="color:var(--fg-subtle)"></i>
+  </div>
+  <div class="rp-scroll">
+
+    <div class="rp-sec">회사</div>
+    <a class="rp-row" href="./dashboard.html" data-nav="dashboard"><i class="ti ti-layout-dashboard"></i>대시보드</a>
+    <a class="rp-row" href="./shareholders.html" data-nav="shareholders"><i class="ti ti-users"></i>주주명부 관리</a>
+    <a class="rp-row" href="./articles.html" data-nav="articles"><i class="ti ti-file-description"></i>정관 관리</a>
+
+    <div class="rp-sec">주주총회</div>
+    <div class="rp-ig">
+      <button class="rp-ig-hd" data-ig aria-expanded="true"><span class="rp-ig-dot"></span>제67기 정기주총<i class="ti ti-chevron-down rp-ig-chev"></i></button>
+      <div class="rp-ig-body" data-open="true">
+        <a class="rp-sub" href="./settings.html" data-nav="settings">기본설정<span class="rp-sdot" style="background:var(--green-9)"></span></a>
+        <a class="rp-sub" href="./agenda.html" data-nav="agenda">의안설정<span class="rp-sdot" style="background:var(--amber-9)"></span></a>
+        <a class="rp-sub" href="./prevote.html" data-nav="prevote">사전투표/위임<span class="rp-sdot" style="background:var(--kc)"></span></a>
+        <a class="rp-sub" href="./live.html" data-nav="live">주주총회 진행<span class="rp-sdot" style="background:var(--slate-7)"></span></a>
+        <a class="rp-sub" href="./result.html" data-nav="result">주주총회 결과<span class="rp-sdot" style="background:var(--slate-7)"></span></a>
+      </div>
+    </div>
+
+    <div class="rp-sec">글로벌</div>
+    <a class="rp-row" href="./templates.html" data-nav="templates"><i class="ti ti-template"></i>템플릿 관리</a>
+    <a class="rp-row active" href="./audit.html" data-nav="audit"><i class="ti ti-clipboard-list"></i>감사로그</a>
+  </div>
+  <div class="rp-foot">
+    <div class="rp-user"><span class="av">KP</span><div style="flex:1"><div style="font-size:13px;font-weight:600">관리자</div><div style="font-size:11px;color:var(--fg-subtle)">주총 담당자</div></div><i class="ti ti-dots" style="color:var(--fg-subtle)"></i></div>
+    <div class="rp-copy">© 2027 Samsung Electronics · AGM Admin v2.0</div>
+  </div>
+</aside>
+<script>document.querySelectorAll('[data-ig]').forEach(function(b){b.addEventListener('click',function(){var x=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!x));b.parentElement.querySelector('.rp-ig-body').setAttribute('data-open',String(!x));});});</script>
+<div class="rp-shell"><div class="rp-scrollmain">
+  <div class="rp-crumb"><i class="ti ti-clipboard-list" style="font-size:16px"></i>감사로그
+    <span class="r"><span><i class="ti ti-clock" style="font-size:14px;vertical-align:-2px"></i> 2분 전 업데이트</span><a class="reload" href="#"><i class="ti ti-refresh" style="font-size:14px"></i>새로고침</a></span>
+  </div>
+  <div class="rp-head"><div><div class="rp-h1">감사로그</div><div class="rp-h1-sub">모든 처리 이력(일시·담당자·작업)을 추적합니다.</div></div></div>
+  <div class="rp-card" style="margin-top:8px">
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:72px 24px;gap:14px">
+      <div style="width:60px;height:60px;border-radius:16px;background:var(--kc-sub);color:var(--kc-tx);display:flex;align-items:center;justify-content:center"><i class="ti ti-clipboard-list" style="font-size:30px"></i></div>
+      <div class="t-h2">감사로그</div>
+      <div class="muted" style="max-width:460px;line-height:1.6">모든 처리 이력(일시·담당자·작업)을 추적합니다.</div>
+      <span class="badge badge-neutral" style="margin-top:4px"><i class="ti ti-tool"></i>준비 중</span>
+      <div style="display:flex;gap:8px;margin-top:8px"><a class="btn btn-surface btn-sm" href="./dashboard.html"><i class="ti ti-arrow-left"></i>대시보드로</a></div>
+    </div>
+  </div>
+</div></div>
+</body>
+</html>

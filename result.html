@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>주주총회 결과 — AGM IR Admin</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.26.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<link rel="stylesheet" href="./park-ui.css" /><link rel="stylesheet" href="./rapidpay.css" />
+</head><body>
+<aside class="rp-nav">
+  <div class="rp-brand">
+    <div class="rp-tile"><i class="ti ti-vote"></i></div>
+    <div style="flex:1"><div class="rp-co">삼성전자 주식회사</div><div class="rp-nm">제67기 주총</div></div>
+    <i class="ti ti-selector" style="color:var(--fg-subtle)"></i>
+  </div>
+  <div class="rp-scroll">
+
+    <div class="rp-sec">회사</div>
+    <a class="rp-row" href="./dashboard.html" data-nav="dashboard"><i class="ti ti-layout-dashboard"></i>대시보드</a>
+    <a class="rp-row" href="./shareholders.html" data-nav="shareholders"><i class="ti ti-users"></i>주주명부 관리</a>
+    <a class="rp-row" href="./articles.html" data-nav="articles"><i class="ti ti-file-description"></i>정관 관리</a>
+
+    <div class="rp-sec">주주총회</div>
+    <div class="rp-ig">
+      <button class="rp-ig-hd" data-ig aria-expanded="true"><span class="rp-ig-dot"></span>제67기 정기주총<i class="ti ti-chevron-down rp-ig-chev"></i></button>
+      <div class="rp-ig-body" data-open="true">
+        <a class="rp-sub" href="./settings.html" data-nav="settings">기본설정<span class="rp-sdot" style="background:var(--green-9)"></span></a>
+        <a class="rp-sub" href="./agenda.html" data-nav="agenda">의안설정<span class="rp-sdot" style="background:var(--amber-9)"></span></a>
+        <a class="rp-sub" href="./prevote.html" data-nav="prevote">사전투표/위임<span class="rp-sdot" style="background:var(--kc)"></span></a>
+        <a class="rp-sub" href="./live.html" data-nav="live">주주총회 진행<span class="rp-sdot" style="background:var(--slate-7)"></span></a>
+        <a class="rp-sub active" href="./result.html" data-nav="result">주주총회 결과<span class="rp-sdot" style="background:var(--slate-7)"></span></a>
+      </div>
+    </div>
+
+    <div class="rp-sec">글로벌</div>
+    <a class="rp-row" href="./templates.html" data-nav="templates"><i class="ti ti-template"></i>템플릿 관리</a>
+    <a class="rp-row" href="./audit.html" data-nav="audit"><i class="ti ti-clipboard-list"></i>감사로그</a>
+  </div>
+  <div class="rp-foot">
+    <div class="rp-user"><span class="av">KP</span><div style="flex:1"><div style="font-size:13px;font-weight:600">관리자</div><div style="font-size:11px;color:var(--fg-subtle)">주총 담당자</div></div><i class="ti ti-dots" style="color:var(--fg-subtle)"></i></div>
+    <div class="rp-copy">© 2027 Samsung Electronics · AGM Admin v2.0</div>
+  </div>
+</aside>
+<script>document.querySelectorAll('[data-ig]').forEach(function(b){b.addEventListener('click',function(){var x=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!x));b.parentElement.querySelector('.rp-ig-body').setAttribute('data-open',String(!x));});});</script>
+
+<div class="rp-shell"><div class="rp-scrollmain">
+<div class="rp-crumb"><i class="ti ti-report-analytics" style="font-size:16px"></i>주주총회 결과<span class="r"><span><i class="ti ti-clock" style="font-size:14px;vertical-align:-2px"></i> 2분 전 업데이트</span><a class="reload" href="#"><i class="ti ti-refresh" style="font-size:14px"></i>새로고침</a></span></div>
+<div class="rp-head"><div><div class="rp-h1">주주총회 결과</div><div class="rp-h1-sub">사전 집계 기준 예상 결과 · 확정 전</div></div>
+<div class="rp-actions"><button class="btn btn-surface"><i class="ti ti-file-text"></i>공시 데이터</button><button class="btn btn-surface"><i class="ti ti-download"></i>결과 내보내기</button><button class="btn btn-kc"><i class="ti ti-file-description"></i>의사록 생성</button></div></div>
+<div class="rp-kpis">
+<div class="rp-kpi"><div class="h"><i class="ti ti-scale"></i>총 의결권</div><div class="v tabnum">71,934,000<small> 주</small></div><div class="d"><span class="delta delta-up">기준일</span></div></div>
+<div class="rp-kpi"><div class="h"><i class="ti ti-chart-pie"></i>예상 출석 의결권</div><div class="v tabnum">84.9<small> %</small></div><div class="d">사전+현장 추정</div></div>
+<div class="rp-kpi"><div class="h"><i class="ti ti-check"></i>가결 예상 의안</div><div class="v">4 / 5</div><div class="d">보통·특별결의</div></div>
+<div class="rp-kpi"><div class="h"><i class="ti ti-alert-triangle"></i>주의 의안</div><div class="v" style="color:var(--amber-11)">1</div><div class="d">제4호 감사위원</div></div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1.2fr;gap:16px;margin-bottom:16px">
+<div class="rp-card"><div class="rp-card-h"><span class="t">의안별 예측 요약</span></div><div style="padding:4px 18px 14px"><div style="display:flex;align-items:center;gap:12px;padding:13px 0;border-top:1px solid var(--border-muted)"><div style="flex:1"><div style="font-weight:600;font-size:13.5px">제1호 재무제표 승인</div><div class="subtle" style="font-size:12px">사전 찬성률 96.2%</div></div><span class="pill2 st-success">가결 예상</span></div><div style="display:flex;align-items:center;gap:12px;padding:13px 0;border-top:1px solid var(--border-muted)"><div style="flex:1"><div style="font-weight:600;font-size:13.5px">제2호 이익배당 승인</div><div class="subtle" style="font-size:12px">사전 찬성률 95.3%</div></div><span class="pill2 st-success">가결 예상</span></div><div style="display:flex;align-items:center;gap:12px;padding:13px 0;border-top:1px solid var(--border-muted)"><div style="flex:1"><div style="font-weight:600;font-size:13.5px">제3호 이사 선임 (집중투표)</div><div class="subtle" style="font-size:12px">사전 찬성률 —</div></div><span class="pill2 st-success">3명 선출</span></div><div style="display:flex;align-items:center;gap:12px;padding:13px 0;border-top:1px solid var(--border-muted)"><div style="flex:1"><div style="font-weight:600;font-size:13.5px">제4호 감사위원 선임</div><div class="subtle" style="font-size:12px">사전 찬성률 62.3%</div></div><span class="pill2 st-pending">주의</span></div><div style="display:flex;align-items:center;gap:12px;padding:13px 0;border-top:1px solid var(--border-muted)"><div style="flex:1"><div style="font-weight:600;font-size:13.5px">제5호 이사 보수한도</div><div class="subtle" style="font-size:12px">사전 찬성률 91.4%</div></div><span class="pill2 st-success">가결 예상</span></div></div></div>
+<div class="rp-card"><div class="rp-card-h"><span class="t">최근 집계 활동</span><a href="./prevote.html" style="font-size:13px;color:var(--kc);font-weight:600">전체 보기</a></div><div style="padding:4px 18px 14px"><div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--border-muted)"><span style="width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--green-3);color:var(--green-11)"><i class="ti ti-arrow-down-left"></i></span><div style="flex:1;font-size:13px">서면위임 접수 · ○○연금공단<div class="subtle" style="font-size:12px">오늘 · 14:30</div></div><span class="amt" style="color:var(--green-11)">+1,200,000주</span></div><div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--border-muted)"><span style="width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--green-3);color:var(--green-11)"><i class="ti ti-arrow-down-left"></i></span><div style="flex:1;font-size:13px">전자투표 수집 · 자사<div class="subtle" style="font-size:12px">오늘 · 14:30</div></div><span class="amt" style="color:var(--green-11)">+480,000주</span></div><div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--border-muted)"><span style="width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--blue-3);color:var(--kc-tx)"><i class="ti ti-arrow-up-right"></i></span><div style="flex:1;font-size:13px">중복 의결권 처리<div class="subtle" style="font-size:12px">오늘 · 14:30</div></div><span class="amt" style="color:var(--fg)">-150,000주</span></div><div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--border-muted)"><span style="width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--green-3);color:var(--green-11)"><i class="ti ti-arrow-down-left"></i></span><div style="flex:1;font-size:13px">자사 위임장 접수 · 홍○○<div class="subtle" style="font-size:12px">오늘 · 14:30</div></div><span class="amt" style="color:var(--green-11)">+320,000주</span></div><div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--border-muted)"><span style="width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--green-3);color:var(--green-11)"><i class="ti ti-arrow-down-left"></i></span><div style="flex:1;font-size:13px">KSD 전자투표 수집<div class="subtle" style="font-size:12px">오늘 · 14:30</div></div><span class="amt" style="color:var(--green-11)">+610,000주</span></div></div></div>
+</div>
+<div class="rp-card"><div class="rp-card-h"><span class="t">의안별 결과</span><span class="subtle" style="font-size:12px">사전 집계 기준 예상</span></div>
+<table class="rp-table"><thead><tr><th>의안</th><th>결의방법</th><th style="text-align:right">출석의결권</th><th style="text-align:right">찬성</th><th style="text-align:right">반대</th><th style="text-align:right">기권</th><th>결과</th><th>가결요건</th></tr></thead><tbody><tr><td class="rp-id">제1호 재무제표 승인</td><td>보통결의</td><td style="text-align:right" class="tabnum">53,810,000천주</td><td style="text-align:right">51,766</td><td style="text-align:right">592%</td><td style="text-align:right">1,452</td><td><span class="pill2 st-success">가결</span></td><td><span class="badge badge-success">충족</span></td></tr><tr><td class="rp-id">제2호 이익배당 승인</td><td>보통결의</td><td style="text-align:right" class="tabnum">53,810,000천주</td><td style="text-align:right">51,281</td><td style="text-align:right">861%</td><td style="text-align:right">1,668</td><td><span class="pill2 st-success">가결</span></td><td><span class="badge badge-success">충족</span></td></tr><tr><td class="rp-id">제3호 이사 선임</td><td>집중투표</td><td style="text-align:right" class="tabnum">53,810,000천주</td><td style="text-align:right">—</td><td style="text-align:right">—</td><td style="text-align:right">—</td><td><span class="pill2 st-success">3명 선출</span></td><td><span class="badge badge-success">충족</span></td></tr><tr><td class="rp-id">제4호 감사위원 선임</td><td>보통결의·3%룰</td><td style="text-align:right" class="tabnum">42,300,000천주</td><td style="text-align:right">26,353</td><td style="text-align:right">13,983</td><td style="text-align:right">1,964</td><td><span class="pill2 st-pending">주의</span></td><td><span class="badge badge-warning">근접</span></td></tr><tr><td class="rp-id">제5호 이사 보수한도</td><td>보통결의</td><td style="text-align:right" class="tabnum">53,810,000천주</td><td style="text-align:right">49,182</td><td style="text-align:right">3,283</td><td style="text-align:right">1,345</td><td><span class="pill2 st-success">가결</span></td><td><span class="badge badge-success">충족</span></td></tr></tbody></table></div>
+<div class="rp-ask"><span class="logo"><i class="ti ti-vote" style="font-size:13px"></i></span><input placeholder="주총·의결권에 대해 무엇이든 물어보세요…" /><span class="go"><i class="ti ti-arrow-up"></i></span></div>
+</div></div></body></html>

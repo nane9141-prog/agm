@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사전투표/위임 · 제67기 주총</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.26.0/dist/tabler-icons.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link href="./park-ui.css" rel="stylesheet">
+<link href="./rapidpay.css" rel="stylesheet">
+<style>
+  /* page-only tiny specifics */
+  .seg-bar{ display:flex; height:12px; border-radius:9999px; overflow:hidden; }
+  .seg-bar > span{ display:block; height:100%; }
+  .risk-ring{ width:64px; height:64px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:700; color:#fff; flex-shrink:0; }
+  .mini-row{ display:flex; align-items:center; gap:10px; padding:10px 0; border-bottom:1px solid var(--border-muted); }
+  .mini-row:last-child{ border-bottom:none; }
+</style>
+</head>
+<body>
+
+<!-- ===== sidebar (verbatim from _partials/sidebar-rp.html; .active added on prevote) ===== -->
+<aside class="rp-nav">
+  <div class="rp-brand">
+    <div class="rp-tile"><i class="ti ti-vote"></i></div>
+    <div style="flex:1"><div class="rp-co">삼성전자 주식회사</div><div class="rp-nm">제67기 주총</div></div>
+    <i class="ti ti-selector" style="color:var(--fg-subtle)"></i>
+  </div>
+  <div class="rp-scroll">
+
+    <div class="rp-sec">회사</div>
+    <a class="rp-row" href="./dashboard.html" data-nav="dashboard"><i class="ti ti-layout-dashboard"></i>대시보드</a>
+    <a class="rp-row" href="./shareholders.html" data-nav="shareholders"><i class="ti ti-users"></i>주주명부 관리</a>
+    <a class="rp-row" href="./articles.html" data-nav="articles"><i class="ti ti-file-description"></i>정관 관리</a>
+
+    <div class="rp-sec">주주총회</div>
+    <div class="rp-ig">
+      <button class="rp-ig-hd" data-ig aria-expanded="true"><span class="rp-ig-dot"></span>제67기 정기주총<i class="ti ti-chevron-down rp-ig-chev"></i></button>
+      <div class="rp-ig-body" data-open="true">
+        <a class="rp-sub" href="./settings.html" data-nav="settings">기본설정<span class="rp-sdot" style="background:var(--green-9)"></span></a>
+        <a class="rp-sub" href="./agenda.html" data-nav="agenda">의안설정<span class="rp-sdot" style="background:var(--amber-9)"></span></a>
+        <a class="rp-sub active" href="./prevote.html" data-nav="prevote">사전투표/위임<span class="rp-sdot" style="background:var(--kc)"></span></a>
+        <a class="rp-sub" href="./live.html" data-nav="live">주주총회 진행<span class="rp-sdot" style="background:var(--slate-7)"></span></a>
+        <a class="rp-sub" href="./result.html" data-nav="result">주주총회 결과<span class="rp-sdot" style="background:var(--slate-7)"></span></a>
+      </div>
+    </div>
+
+    <div class="rp-sec">글로벌</div>
+    <a class="rp-row" href="./templates.html" data-nav="templates"><i class="ti ti-template"></i>템플릿 관리</a>
+    <a class="rp-row" href="./audit.html" data-nav="audit"><i class="ti ti-clipboard-list"></i>감사로그</a>
+  </div>
+  <div class="rp-foot">
+    <div class="rp-user"><span class="av">KP</span><div style="flex:1"><div style="font-size:13px;font-weight:600">관리자</div><div style="font-size:11px;color:var(--fg-subtle)">주총 담당자</div></div><i class="ti ti-dots" style="color:var(--fg-subtle)"></i></div>
+    <div class="rp-copy">© 2027 Samsung Electronics · AGM Admin v2.0</div>
+  </div>
+</aside>
+<script>document.querySelectorAll('[data-ig]').forEach(function(b){b.addEventListener('click',function(){var x=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!x));b.parentElement.querySelector('.rp-ig-body').setAttribute('data-open',String(!x));});});</script>
+
+<!-- ===== shell ===== -->
+<div class="rp-shell">
+<div class="rp-scrollmain">
+
+  <!-- crumb -->
+  <div class="rp-crumb">
+    사전투표/위임
+    <div class="r">
+      <span>2분 전 업데이트</span>
+      <a class="reload" href="javascript:location.reload()"><i class="ti ti-refresh"></i>새로고침</a>
+    </div>
+  </div>
+
+  <!-- head -->
+  <div class="rp-head">
+    <div>
+      <div class="rp-h1">사전투표/위임</div>
+      <div class="rp-h1-sub">전자·서면 채널별 사전 의결권 행사 내역</div>
+    </div>
+    <div class="rp-actions">
+      <div class="rp-srch"><i class="ti ti-search"></i><input placeholder="행사 내역 검색…"></div>
+      <button class="btn btn-surface" onclick="toggleFilter(event)"><i class="ti ti-filter"></i>필터</button>
+      <button class="btn btn-surface"><i class="ti ti-arrows-sort"></i>정렬</button>
+      <button class="btn btn-surface"><i class="ti ti-download"></i>내보내기</button>
+      <button class="btn btn-kc" onclick="openAI()"><i class="ti ti-sparkles"></i>사전 행사 분석</button>
+    </div>
+  </div>
+
+  <!-- KPIs -->
+  <div class="rp-kpis">
+    <div class="rp-kpi">
+      <div class="h"><i class="ti ti-users"></i>총 주주</div>
+      <div class="v">1,247<small> 명</small></div>
+      <div class="d">전자등록 명부 기준</div>
+    </div>
+    <div class="rp-kpi">
+      <div class="h"><i class="ti ti-device-laptop"></i>전자투표 참여</div>
+      <div class="v">384<small> 명</small></div>
+      <div class="d"><span class="delta delta-up"><i class="ti ti-arrow-up-right"></i>30.8%</span> 참여율</div>
+    </div>
+    <div class="rp-kpi">
+      <div class="h"><i class="ti ti-file-signal"></i>위임장 제출</div>
+      <div class="v">156<small> 명</small></div>
+      <div class="d"><span class="delta delta-up"><i class="ti ti-arrow-up-right"></i>12.5%</span> 제출율</div>
+    </div>
+    <div class="rp-kpi">
+      <div class="h"><i class="ti ti-chart-pie"></i>총 행사율</div>
+      <div class="v">43.3<small> %</small></div>
+      <div class="d">전자 + 서면 합산</div>
+    </div>
+  </div>
+
+  <!-- table card -->
+  <div class="rp-card">
+    <div class="rp-card-h">
+      <div class="t">행사 내역</div>
+      <div class="rp-segtabs">
+        <button class="rp-segtab active">전체</button>
+        <button class="rp-segtab">전자</button>
+        <button class="rp-segtab">서면·위임</button>
+      </div>
+    </div>
+    <div style="overflow-x:auto">
+    <table class="rp-table">
+      <thead>
+        <tr>
+          <th style="width:40px"><input type="checkbox" class="ck"></th>
+          <th><i class="ti ti-id"></i>주주 ID</th>
+          <th><i class="ti ti-clock"></i>일시</th>
+          <th><i class="ti ti-route"></i>채널</th>
+          <th><i class="ti ti-scale"></i>의결권</th>
+          <th><i class="ti ti-flag"></i>상태</th>
+          <th><i class="ti ti-pencil-bolt"></i>행사수단</th>
+          <th style="width:40px"></th>
+        </tr>
+      </thead>
+      <tbody id="rowBody">
+        <!-- rows injected via script -->
+      </tbody>
+    </table>
+    </div>
+    <!-- pager -->
+    <div style="padding:0 14px 14px">
+      <div class="rp-pager">
+        <span>1,673건 중 16건</span>
+        <div style="display:flex; align-items:center; gap:14px">
+          <div class="rp-pages">
+            <span class="rp-pg"><i class="ti ti-chevron-left"></i></span>
+            <span class="rp-pg">1</span>
+            <span class="rp-pg active">2</span>
+            <span class="rp-pg">3</span>
+            <span style="padding:0 4px; color:var(--fg-disabled)">…</span>
+            <span class="rp-pg">16</span>
+            <span class="rp-pg"><i class="ti ti-chevron-right"></i></span>
+          </div>
+          <span style="color:var(--fg-subtle)">16/page</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /scrollmain -->
+
+  <!-- ask bar -->
+  <div class="rp-ask">
+    <span class="logo"><i class="ti ti-sparkles"></i></span>
+    <input placeholder="주총·의결권에 대해 무엇이든 물어보세요…">
+    <button class="go"><i class="ti ti-arrow-up"></i></button>
+  </div>
+
+</div><!-- /shell -->
+
+<!-- ===== FILTER popover ===== -->
+<div id="filterPop" class="rp-pop" style="display:none; position:fixed; top:150px; right:24px; width:320px; z-index:55;">
+  <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px">
+    <div style="font-size:14px; font-weight:700">필터</div>
+    <button class="btn btn-plain btn-xs" onclick="toggleFilter()"><i class="ti ti-x"></i></button>
+  </div>
+  <div class="fl-sec">상태</div>
+  <div>
+    <label class="fl-opt"><input type="checkbox" class="ck" checked>완료</label>
+    <label class="fl-opt"><input type="checkbox" class="ck">검토대기</label>
+    <label class="fl-opt"><input type="checkbox" class="ck">중복감지</label>
+    <label class="fl-opt"><input type="checkbox" class="ck">보류</label>
+  </div>
+  <div class="fl-sec">채널</div>
+  <div>
+    <label class="fl-opt"><input type="checkbox" class="ck" checked>자사전자</label>
+    <label class="fl-opt"><input type="checkbox" class="ck" checked>KSD</label>
+    <label class="fl-opt"><input type="checkbox" class="ck">서면위임 자사</label>
+    <label class="fl-opt"><input type="checkbox" class="ck">서면위임 타사</label>
+  </div>
+  <div class="fl-sec">행사수단</div>
+  <div>
+    <label class="fl-opt"><input type="checkbox" class="ck">전자투표</label>
+    <label class="fl-opt"><input type="checkbox" class="ck">전자위임</label>
+    <label class="fl-opt"><input type="checkbox" class="ck">서면</label>
+  </div>
+  <div class="fl-sec">기간</div>
+  <div>
+    <label class="fl-opt"><input type="radio" name="period">오늘</label>
+    <label class="fl-opt"><input type="radio" name="period" checked>최근7일</label>
+    <label class="fl-opt"><input type="radio" name="period">이번달</label>
+    <label class="fl-opt"><input type="radio" name="period">직접</label>
+  </div>
+  <div style="display:flex; gap:8px; margin-top:14px">
+    <button class="btn btn-plain btn-sm" style="flex:1">Clear All</button>
+    <button class="btn btn-kc btn-sm" style="flex:1" onclick="toggleFilter()">필터 적용</button>
+  </div>
+</div>
+
+<!-- ===== AI panel (right drawer) ===== -->
+<div id="aiPanel" class="rp-overlay" style="display:none" onclick="overlayClose(event,'aiPanel')">
+  <div class="rp-drawer" onclick="event.stopPropagation()">
+    <div class="rp-drawer-h">
+      <div style="display:flex; align-items:center; gap:9px">
+        <span style="width:30px; height:30px; border-radius:8px; background:var(--kc); color:#fff; display:flex; align-items:center; justify-content:center"><i class="ti ti-sparkles"></i></span>
+        <div style="font-size:16px; font-weight:700">사전 행사 분석</div>
+      </div>
+      <button class="btn btn-plain btn-xs" onclick="closeAI()"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="rp-drawer-b">
+
+      <div style="font-size:14px; font-weight:700; margin-bottom:4px">중복·이상 행사 분석</div>
+      <div style="font-size:12.5px; color:var(--fg-subtle); margin-bottom:14px">2,520건의 사전 행사 데이터를 분석했습니다.</div>
+
+      <!-- risk score -->
+      <div class="ai-box" style="display:flex; align-items:center; gap:14px; margin-bottom:16px">
+        <div class="risk-ring" style="background:var(--amber-9)">62</div>
+        <div>
+          <div style="font-size:13px; font-weight:700">위험 점수 · 주의</div>
+          <div style="font-size:12.5px; color:var(--fg-muted); margin-top:3px">중복 의심 및 명부 불일치 건이 평소보다 다소 높습니다.</div>
+        </div>
+      </div>
+
+      <!-- distribution -->
+      <div style="font-size:13px; font-weight:600; margin-bottom:8px">행사 분포</div>
+      <div class="seg-bar" style="margin-bottom:10px">
+        <span style="width:84%; background:var(--green-9)"></span>
+        <span style="width:11%; background:var(--amber-9)"></span>
+        <span style="width:5%; background:var(--red-9)"></span>
+      </div>
+      <div style="display:flex; gap:16px; font-size:12px; color:var(--fg-muted); margin-bottom:18px">
+        <span style="display:flex; align-items:center; gap:5px"><span style="width:8px;height:8px;border-radius:50%;background:var(--green-9)"></span>정상 2,117</span>
+        <span style="display:flex; align-items:center; gap:5px"><span style="width:8px;height:8px;border-radius:50%;background:var(--amber-9)"></span>검토 필요 277</span>
+        <span style="display:flex; align-items:center; gap:5px"><span style="width:8px;height:8px;border-radius:50%;background:var(--red-9)"></span>중복 의심 126</span>
+      </div>
+
+      <!-- behavioral insight -->
+      <div class="ai-box" style="margin-bottom:18px">
+        <div style="display:flex; align-items:center; gap:7px; font-size:13px; font-weight:700; color:var(--kc-tx)"><i class="ti ti-bulb"></i>행동 인사이트</div>
+        <div style="font-size:12.5px; color:var(--fg-muted); margin-top:6px; line-height:1.55">주말 접수분에서 중복 행사 비율이 높습니다. 동일 주주가 전자투표와 서면위임을 함께 제출한 사례가 주중 대비 2.4배 많습니다.</div>
+      </div>
+
+      <!-- review needed list -->
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px">
+        <div style="font-size:13px; font-weight:700">검토 필요 행사</div>
+        <a style="font-size:12px; color:var(--kc); font-weight:600" href="#">View All</a>
+      </div>
+      <div style="margin-bottom:18px">
+        <div class="mini-row">
+          <span class="cust"><span class="av" style="background:var(--amber-9)">홍</span></span>
+          <div style="flex:1">
+            <div style="font-size:13px; font-weight:600; color:var(--fg)">홍○○ · CI-DB01483</div>
+            <div style="font-size:11.5px; color:var(--fg-subtle)">1,200,000주 · 사유: 복수 채널 행사</div>
+          </div>
+          <span class="pill2 st-pending">검토</span>
+        </div>
+        <div class="mini-row">
+          <span class="cust"><span class="av" style="background:var(--amber-9)">김</span></span>
+          <div style="flex:1">
+            <div style="font-size:13px; font-weight:600; color:var(--fg)">김○○ · CI-DB01512</div>
+            <div style="font-size:11.5px; color:var(--fg-subtle)">340,000주 · 사유: 명부 불일치</div>
+          </div>
+          <span class="pill2 st-pending">검토</span>
+        </div>
+        <div class="mini-row">
+          <span class="cust"><span class="av" style="background:var(--amber-9)">박</span></span>
+          <div style="flex:1">
+            <div style="font-size:13px; font-weight:600; color:var(--fg)">박○○ · CI-DB01530</div>
+            <div style="font-size:11.5px; color:var(--fg-subtle)">88,000주 · 사유: 위임장 서명 누락</div>
+          </div>
+          <span class="pill2 st-pending">검토</span>
+        </div>
+      </div>
+
+      <!-- duplicate suspect list -->
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px">
+        <div style="font-size:13px; font-weight:700">중복 의심</div>
+        <a style="font-size:12px; color:var(--kc); font-weight:600" href="#">View All</a>
+      </div>
+      <div>
+        <div class="mini-row">
+          <span class="cust"><span class="av" style="background:var(--red-9)">이</span></span>
+          <div style="flex:1">
+            <div style="font-size:13px; font-weight:600; color:var(--fg)">이○○ · CI-DB01477</div>
+            <div style="font-size:11.5px; color:var(--fg-subtle)">512,000주 · 전자투표 + 서면위임 동시</div>
+          </div>
+          <span class="pill2 st-cancel">중복</span>
+        </div>
+        <div class="mini-row">
+          <span class="cust"><span class="av" style="background:var(--red-9)">정</span></span>
+          <div style="flex:1">
+            <div style="font-size:13px; font-weight:600; color:var(--fg)">정○○ · CI-DB01499</div>
+            <div style="font-size:11.5px; color:var(--fg-subtle)">73,500주 · KSD + 자사전자 중복</div>
+          </div>
+          <span class="pill2 st-cancel">중복</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="rp-drawer-f">
+      <button class="btn btn-surface" style="flex:1" onclick="closeAI()">닫기</button>
+      <button class="btn btn-kc" style="flex:1"><i class="ti ti-checklist"></i>검토 큐로 보내기</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DETAIL (right drawer) ===== -->
+<div id="detail" class="rp-overlay" style="display:none" onclick="overlayClose(event,'detail')">
+  <div class="rp-drawer" onclick="event.stopPropagation()">
+    <div class="rp-drawer-h">
+      <div style="font-size:16px; font-weight:700">주주 행사 상세</div>
+      <button class="btn btn-plain btn-xs" onclick="closeDetail()"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="rp-drawer-b">
+
+      <!-- shareholder header -->
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px">
+        <span style="width:46px;height:46px;border-radius:50%;background:var(--slate-9);color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center">홍○○</span>
+        <div style="flex:1">
+          <div style="font-size:16px; font-weight:700">홍○○</div>
+          <div style="font-size:12.5px; color:var(--fg-subtle)">CI-DB01483</div>
+        </div>
+        <div style="text-align:right">
+          <span class="pill2 st-pending">검토대기</span>
+          <div class="amt" style="margin-top:6px; font-size:15px">1,200,000<span class="u">주</span></div>
+        </div>
+      </div>
+
+      <!-- AI insight -->
+      <div class="ai-box" style="margin-bottom:18px">
+        <div style="display:flex; align-items:center; gap:7px; font-size:13px; font-weight:700; color:var(--kc-tx)"><i class="ti ti-sparkles"></i>Rapid AI Insight</div>
+        <div style="font-size:12.5px; color:var(--fg-muted); margin-top:6px; line-height:1.55">행사 패턴: 자사 전자투표로 접수되었으나 동일 명의로 서면위임 1건이 추가 감지되었습니다. 채널 간 의결권 합산이 보유 수량을 초과하지 않으므로 단일 유효 처리를 권장합니다.</div>
+      </div>
+
+      <!-- timeline -->
+      <div style="font-size:13px; font-weight:700; margin-bottom:12px">처리 타임라인</div>
+      <div class="tl" style="margin-bottom:20px">
+        <div class="tl-i">
+          <div style="font-size:13px; font-weight:600; color:var(--fg)">접수</div>
+          <div style="font-size:12px; color:var(--fg-subtle)">03-25-2027 · 14:30 · 자사 전자투표</div>
+        </div>
+        <div class="tl-i">
+          <div style="font-size:13px; font-weight:600; color:var(--fg)">검토</div>
+          <div style="font-size:12px; color:var(--fg-subtle)">03-25-2027 · 14:41 · 중복 채널 감지</div>
+        </div>
+        <div class="tl-i now">
+          <div style="font-size:13px; font-weight:600; color:var(--fg)">유효처리 대기</div>
+          <div style="font-size:12px; color:var(--fg-subtle)">담당자 확인 필요</div>
+        </div>
+        <div class="tl-i todo">
+          <div style="font-size:13px; font-weight:600; color:var(--fg-subtle)">완료</div>
+          <div style="font-size:12px; color:var(--fg-subtle)">—</div>
+        </div>
+      </div>
+
+      <!-- detail fields -->
+      <div style="font-size:13px; font-weight:700; margin-bottom:6px">행사 상세</div>
+      <div style="font-size:13px">
+        <div class="mini-row"><div style="flex:1; color:var(--fg-subtle)">거래번호</div><div style="font-weight:600; color:var(--fg)" class="tabnum">TX-2027-0038217</div></div>
+        <div class="mini-row"><div style="flex:1; color:var(--fg-subtle)">채널</div><div style="font-weight:600; color:var(--fg)">자사 전자투표</div></div>
+        <div class="mini-row"><div style="flex:1; color:var(--fg-subtle)">행사수단</div><div style="font-weight:600; color:var(--fg)">전자투표</div></div>
+        <div class="mini-row"><div style="flex:1; color:var(--fg-subtle)">일시</div><div style="font-weight:600; color:var(--fg)" class="tabnum">03-25-2027 · 14:30</div></div>
+        <div class="mini-row"><div style="flex:1; color:var(--fg-subtle)">의결권</div><div class="amt">1,200,000<span class="u">주</span></div></div>
+      </div>
+
+    </div>
+    <div class="rp-drawer-f">
+      <button class="btn btn-surface" style="flex:1"><i class="ti ti-player-pause"></i>보류</button>
+      <button class="btn btn-kc" style="flex:1"><i class="ti ti-circle-check"></i>유효 처리</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---- table rows ---- */
+var channels = [
+  {nm:'자사전자', icon:'ti-device-laptop', color:'var(--blue-9)'},
+  {nm:'KSD', icon:'ti-building-bank', color:'var(--green-9)'},
+  {nm:'서면위임 자사', icon:'ti-file-signal', color:'var(--purple-9)'},
+  {nm:'서면위임 타사', icon:'ti-mail', color:'var(--slate-9)'}
+];
+var means = ['전자투표','전자위임','서면'];
+var statuses = [
+  {t:'완료', c:'st-success'},
+  {t:'검토대기', c:'st-pending'},
+  {t:'중복감지', c:'st-unpaid'},
+  {t:'보류', c:'st-cancel'}
+];
+/* [id, datetime, channelIdx, votes, statusIdx, meanIdx] */
+var rows = [
+  ['CI-DB01495','03-25-2027 · 14:30',0,'1,200,000',0,0],
+  ['CI-DB01483','03-25-2027 · 14:28',2,'340,000',1,2],
+  ['CI-DB01477','03-25-2027 · 14:22',1,'512,000',2,0],
+  ['CI-DB01471','03-25-2027 · 14:15',0,'88,000',0,0],
+  ['CI-DB01468','03-25-2027 · 14:09',3,'1,750,000',3,2],
+  ['CI-DB01460','03-25-2027 · 13:58',0,'24,000',0,0],
+  ['CI-DB01455','03-25-2027 · 13:47',1,'905,000',1,1],
+  ['CI-DB01449','03-25-2027 · 13:33',2,'410,000',0,2],
+  ['CI-DB01442','03-25-2027 · 13:21',0,'2,300,000',0,0],
+  ['CI-DB01437','03-25-2027 · 13:10',1,'73,500',2,0],
+  ['CI-DB01430','03-25-2027 · 12:55',3,'156,000',0,2],
+  ['CI-DB01424','03-25-2027 · 12:40',0,'620,000',0,0],
+  ['CI-DB01418','03-25-2027 · 12:28',2,'45,000',1,1],
+  ['CI-DB01411','03-25-2027 · 12:14',0,'1,080,000',0,0]
+];
+var tb = document.getElementById('rowBody');
+tb.innerHTML = rows.map(function(r){
+  var ch = channels[r[2]], st = statuses[r[4]], mn = means[r[5]];
+  return '<tr onclick="openDetail()">'
+    + '<td onclick="event.stopPropagation()"><input type="checkbox" class="ck"></td>'
+    + '<td><span class="rp-id">'+r[0]+'</span></td>'
+    + '<td class="tabnum">'+r[1]+'</td>'
+    + '<td><span class="tcell"><span class="ic" style="background:color-mix(in srgb,'+ch.color+' 14%,transparent); color:'+ch.color+'"><i class="ti '+ch.icon+'"></i></span>'+ch.nm+'</span></td>'
+    + '<td><span class="amt">'+r[3]+'<span class="u">주</span></span></td>'
+    + '<td><span class="pill2 '+st.c+'">'+st.t+'</span></td>'
+    + '<td>'+mn+'</td>'
+    + '<td onclick="event.stopPropagation()"><i class="ti ti-dots dots"></i></td>'
+    + '</tr>';
+}).join('');
+
+/* ---- drawer / popover controls ---- */
+function openAI(){ document.getElementById('aiPanel').style.display='flex'; }
+function closeAI(){ document.getElementById('aiPanel').style.display='none'; }
+function openDetail(){ document.getElementById('detail').style.display='flex'; }
+function closeDetail(){ document.getElementById('detail').style.display='none'; }
+function toggleFilter(e){ if(e) e.stopPropagation(); var p=document.getElementById('filterPop'); p.style.display = p.style.display==='none' ? 'block' : 'none'; }
+function overlayClose(e,id){ if(e.target.id===id) document.getElementById(id).style.display='none'; }
+
+document.addEventListener('keydown', function(e){
+  if(e.key==='Escape'){
+    closeAI(); closeDetail();
+    document.getElementById('filterPop').style.display='none';
+  }
+});
+/* click-away for filter popover */
+document.addEventListener('click', function(e){
+  var p=document.getElementById('filterPop');
+  if(p.style.display==='block' && !p.contains(e.target) && !e.target.closest('button')){
+    p.style.display='none';
+  }
+});
+</script>
+
+</body>
+</html>

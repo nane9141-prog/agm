@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>기본설정 · 제67기 주총 · AGM Admin</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.7.0/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="./park-ui.css">
+  <link rel="stylesheet" href="./rapidpay.css">
+</head>
+<body>
+
+<!-- Rapidpay-style sidebar with FINAL AGM IA. Copy into each page; set .active via data-nav.
+     Logo: Nexsr mark omitted for brevity; uses brand tile. -->
+<aside class="rp-nav">
+  <div class="rp-brand">
+    <div class="rp-tile"><i class="ti ti-vote"></i></div>
+    <div style="flex:1"><div class="rp-co">삼성전자 주식회사</div><div class="rp-nm">제67기 주총</div></div>
+    <i class="ti ti-selector" style="color:var(--fg-subtle)"></i>
+  </div>
+  <div class="rp-scroll">
+
+    <div class="rp-sec">회사</div>
+    <a class="rp-row" href="./dashboard.html" data-nav="dashboard"><i class="ti ti-layout-dashboard"></i>대시보드</a>
+    <a class="rp-row" href="./shareholders.html" data-nav="shareholders"><i class="ti ti-users"></i>주주명부 관리</a>
+    <a class="rp-row" href="./articles.html" data-nav="articles"><i class="ti ti-file-description"></i>정관 관리</a>
+
+    <div class="rp-sec">주주총회</div>
+    <div class="rp-ig">
+      <button class="rp-ig-hd" data-ig aria-expanded="true"><span class="rp-ig-dot"></span>제67기 정기주총<i class="ti ti-chevron-down rp-ig-chev"></i></button>
+      <div class="rp-ig-body" data-open="true">
+        <a class="rp-sub active" href="./settings.html" data-nav="settings">기본설정<span class="rp-sdot" style="background:var(--green-9)"></span></a>
+        <a class="rp-sub" href="./agenda.html" data-nav="agenda">의안설정<span class="rp-sdot" style="background:var(--amber-9)"></span></a>
+        <a class="rp-sub" href="./prevote.html" data-nav="prevote">사전투표/위임<span class="rp-sdot" style="background:var(--kc)"></span></a>
+        <a class="rp-sub" href="./live.html" data-nav="live">주주총회 진행<span class="rp-sdot" style="background:var(--slate-7)"></span></a>
+        <a class="rp-sub" href="./result.html" data-nav="result">주주총회 결과<span class="rp-sdot" style="background:var(--slate-7)"></span></a>
+      </div>
+    </div>
+
+    <div class="rp-sec">글로벌</div>
+    <a class="rp-row" href="./templates.html" data-nav="templates"><i class="ti ti-template"></i>템플릿 관리</a>
+    <a class="rp-row" href="./audit.html" data-nav="audit"><i class="ti ti-clipboard-list"></i>감사로그</a>
+  </div>
+  <div class="rp-foot">
+    <div class="rp-user"><span class="av">KP</span><div style="flex:1"><div style="font-size:13px;font-weight:600">관리자</div><div style="font-size:11px;color:var(--fg-subtle)">주총 담당자</div></div><i class="ti ti-dots" style="color:var(--fg-subtle)"></i></div>
+    <div class="rp-copy">© 2027 Samsung Electronics · AGM Admin v2.0</div>
+  </div>
+</aside>
+<script>document.querySelectorAll('[data-ig]').forEach(function(b){b.addEventListener('click',function(){var x=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!x));b.parentElement.querySelector('.rp-ig-body').setAttribute('data-open',String(!x));});});</script>
+
+<div class="rp-shell">
+  <div class="rp-scrollmain">
+
+    <!-- crumb -->
+    <div class="rp-crumb">
+      <i class="ti ti-settings" style="font-size:16px"></i>
+      <span>기본설정</span>
+      <span class="r">
+        <span>업데이트 2026-06-01 14:20</span>
+        <a class="reload" href="#"><i class="ti ti-refresh" style="font-size:14px"></i>새로고침</a>
+      </span>
+    </div>
+
+    <!-- head -->
+    <div class="rp-head">
+      <div>
+        <div class="rp-h1">기본설정</div>
+        <div class="rp-h1-sub">주총 기본 정보·사전의결권·행사 설정·첨부서류</div>
+      </div>
+      <div class="rp-actions">
+        <button class="btn btn-surface"><i class="ti ti-eye"></i>미리보기</button>
+        <button class="btn btn-kc"><i class="ti ti-device-floppy"></i>저장</button>
+      </div>
+    </div>
+
+    <!-- centered form column -->
+    <div style="max-width:860px; margin:0 auto; display:flex; flex-direction:column; gap:18px;">
+
+      <!-- 1) 기본 정보 -->
+      <section class="rp-card">
+        <div class="rp-card-h">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="width:26px; height:26px; border-radius:50%; background:var(--kc); color:#fff; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700;">1</span>
+            <span class="t">기본 정보</span>
+          </div>
+        </div>
+        <div style="padding:18px; display:flex; flex-direction:column; gap:16px;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <div class="field">
+              <label class="field-label">기수<span class="req">*</span></label>
+              <input class="input" type="text" value="67" placeholder="예: 67">
+              <span class="field-help">정기주총 회차(기수)를 입력하세요.</span>
+            </div>
+            <div class="field">
+              <label class="field-label">주총 종류<span class="req">*</span></label>
+              <select class="select">
+                <option>정기주주총회</option>
+                <option>임시주주총회</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <div class="field">
+              <label class="field-label">개최 일시<span class="req">*</span></label>
+              <input class="input" type="datetime-local" value="2027-03-20T09:00">
+            </div>
+            <div class="field">
+              <label class="field-label">의결권 기준일<span class="req">*</span></label>
+              <div class="input field-static"><i class="ti ti-calendar-event" style="font-size:16px"></i>주주명부 선택 시 자동 등록</div>
+              <span class="field-help">주주명부 확정 시 기준일이 자동 반영됩니다.</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label">개최 장소<span class="req">*</span></label>
+            <input class="input" type="text" value="수원컨벤션센터 컨벤션홀 3층" placeholder="개최 장소를 입력하세요">
+          </div>
+
+          <div class="field">
+            <label class="field-label">자산 규모<span class="req">*</span></label>
+            <div id="assetSize" style="display:flex; flex-direction:column; gap:8px; margin-top:2px;">
+              <label style="display:flex; align-items:center; gap:8px; font-size:14px; cursor:pointer;">
+                <input type="radio" name="asset" value="under1000"> 1,000억원 미만
+              </label>
+              <label style="display:flex; align-items:center; gap:8px; font-size:14px; cursor:pointer;">
+                <input type="radio" name="asset" value="under2000"> 1,000억원 이상 ~ 2조원 미만
+              </label>
+              <label style="display:flex; align-items:center; gap:8px; font-size:14px; cursor:pointer;">
+                <input type="radio" name="asset" value="over2000" checked> 2조원 이상
+                <span id="assetBadge" class="badge badge-danger" style="margin-left:4px;"><i class="ti ti-alert-triangle"></i>전자투표 필수</span>
+              </label>
+            </div>
+            <span class="field-help">자산총액 2조원 이상 상장회사는 전자투표 도입이 의무입니다.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2) 사전의결권 설정 -->
+      <section class="rp-card">
+        <div class="rp-card-h">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="width:26px; height:26px; border-radius:50%; background:var(--kc); color:#fff; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700;">2</span>
+            <span class="t">사전의결권 설정</span>
+          </div>
+        </div>
+        <div style="padding:18px; display:flex; flex-direction:column; gap:18px;">
+
+          <!-- 전자투표 -->
+          <div style="border:1px solid var(--border-muted); border-radius:10px; padding:14px 16px;">
+            <label class="switch">
+              <input type="checkbox" checked>
+              <span class="switch-track"><span class="switch-thumb"></span></span>
+              <span style="font-size:14px; font-weight:600;">전자투표 사전행사</span>
+            </label>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:14px;">
+              <div class="field">
+                <label class="field-label">관리기관</label>
+                <select class="select">
+                  <option>IR큐더스</option>
+                  <option>한국예탁결제원</option>
+                  <option>삼성증권</option>
+                </select>
+              </div>
+              <div class="field">
+                <label class="field-label">행사기간</label>
+                <input class="input" type="text" value="2027-03-09 09:00 ~ 2027-03-19 17:00" placeholder="행사기간">
+              </div>
+            </div>
+          </div>
+
+          <!-- 전자위임장 -->
+          <div style="border:1px solid var(--border-muted); border-radius:10px; padding:14px 16px;">
+            <label class="switch">
+              <input type="checkbox" checked>
+              <span class="switch-track"><span class="switch-thumb"></span></span>
+              <span style="font-size:14px; font-weight:600;">전자위임장 사전행사</span>
+            </label>
+            <div style="margin-top:14px;">
+              <div class="field">
+                <label class="field-label">행사기간</label>
+                <input class="input" type="text" value="2027-03-09 09:00 ~ 2027-03-19 17:00" placeholder="행사기간">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 3) 주총 행사 설정 -->
+      <section class="rp-card">
+        <div class="rp-card-h">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="width:26px; height:26px; border-radius:50%; background:var(--kc); color:#fff; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700;">3</span>
+            <span class="t">주총 행사 설정</span>
+          </div>
+        </div>
+        <div style="padding:18px; display:flex; flex-direction:column; gap:14px;">
+
+          <!-- 전자투표 -->
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 14px; border:1px solid var(--border-muted); border-radius:10px;">
+            <label class="switch">
+              <input type="checkbox" checked>
+              <span class="switch-track"><span class="switch-thumb"></span></span>
+              <span style="font-size:14px; font-weight:600;">전자투표</span>
+            </label>
+            <span class="exer-badge badge badge-danger"><i class="ti ti-alert-triangle"></i>필수</span>
+          </div>
+
+          <!-- 생중계 -->
+          <div style="border:1px solid var(--border-muted); border-radius:10px; padding:12px 14px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+              <label class="switch">
+                <input id="liveSwitch" type="checkbox" checked>
+                <span class="switch-track"><span class="switch-thumb"></span></span>
+                <span style="font-size:14px; font-weight:600;">생중계</span>
+              </label>
+              <span class="exer-badge badge badge-neutral">선택</span>
+            </div>
+            <!-- 생중계 서브설정 -->
+            <div id="liveSub" style="margin-top:14px; padding-top:14px; border-top:1px dashed var(--border); display:flex; flex-direction:column; gap:14px;">
+              <div class="field">
+                <label class="field-label">인증기간</label>
+                <input class="input" type="text" value="2027-03-20 08:00 ~ 2027-03-20 09:00" placeholder="인증기간">
+              </div>
+              <label class="switch">
+                <input type="checkbox" checked>
+                <span class="switch-track"><span class="switch-thumb"></span></span>
+                <span style="font-size:14px;">질의 게시판 사용</span>
+              </label>
+              <div class="field">
+                <label class="field-label">자막 언어</label>
+                <div style="display:flex; gap:18px; flex-wrap:wrap; margin-top:2px;">
+                  <label style="display:flex; align-items:center; gap:7px; font-size:14px; cursor:pointer;"><input type="checkbox" class="check" checked> 한국어</label>
+                  <label style="display:flex; align-items:center; gap:7px; font-size:14px; cursor:pointer;"><input type="checkbox" class="check"> English</label>
+                  <label style="display:flex; align-items:center; gap:7px; font-size:14px; cursor:pointer;"><input type="checkbox" class="check"> 日本語</label>
+                  <label style="display:flex; align-items:center; gap:7px; font-size:14px; cursor:pointer;"><input type="checkbox" class="check"> 中文</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 현장표결앱 -->
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 14px; border:1px solid var(--border-muted); border-radius:10px;">
+            <label class="switch">
+              <input type="checkbox">
+              <span class="switch-track"><span class="switch-thumb"></span></span>
+              <span style="font-size:14px; font-weight:600;">현장표결앱</span>
+            </label>
+            <span class="exer-badge badge badge-neutral">선택</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 4) 첨부서류 -->
+      <section class="rp-card">
+        <div class="rp-card-h">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="width:26px; height:26px; border-radius:50%; background:var(--kc); color:#fff; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700;">4</span>
+            <span class="t">첨부서류</span>
+          </div>
+        </div>
+        <div style="padding:18px; display:flex; flex-direction:column; gap:16px;">
+
+          <div class="field">
+            <label class="field-label">소집통지서</label>
+            <!-- dropzone -->
+            <div style="border:2px dashed var(--border-strong); border-radius:12px; padding:26px 18px; text-align:center; background:var(--bg-subtle); cursor:pointer;">
+              <i class="ti ti-cloud-upload" style="font-size:30px; color:var(--fg-subtle)"></i>
+              <div style="font-size:14px; font-weight:600; margin-top:8px;">파일을 끌어다 놓거나 클릭하여 업로드</div>
+              <div style="font-size:12px; color:var(--fg-subtle); margin-top:4px;">PDF · HWP · DOCX (최대 20MB)</div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label">참고서류</label>
+            <!-- dropzone -->
+            <div style="border:2px dashed var(--border-strong); border-radius:12px; padding:26px 18px; text-align:center; background:var(--bg-subtle); cursor:pointer;">
+              <i class="ti ti-cloud-upload" style="font-size:30px; color:var(--fg-subtle)"></i>
+              <div style="font-size:14px; font-weight:600; margin-top:8px;">파일을 끌어다 놓거나 클릭하여 업로드</div>
+              <div style="font-size:12px; color:var(--fg-subtle); margin-top:4px;">PDF · HWP · DOCX (최대 20MB) · 다중 업로드 가능</div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- footer actions -->
+      <div style="display:flex; justify-content:flex-end; gap:8px; padding-bottom:8px;">
+        <button class="btn btn-surface"><i class="ti ti-eye"></i>미리보기</button>
+        <button class="btn btn-kc"><i class="ti ti-device-floppy"></i>저장</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // 생중계 서브설정 토글
+  (function () {
+    var sw = document.getElementById('liveSwitch');
+    var sub = document.getElementById('liveSub');
+    function sync() { sub.style.display = sw.checked ? 'flex' : 'none'; }
+    sw.addEventListener('change', sync);
+    sync();
+  })();
+
+  // 자산 규모 라디오 → 행사 설정 필수/선택 badge 토글
+  (function () {
+    var radios = document.querySelectorAll('#assetSize input[name="asset"]');
+    var assetBadge = document.getElementById('assetBadge');
+    var exerBadges = document.querySelectorAll('.exer-badge');
+    function sync() {
+      var sel = document.querySelector('#assetSize input[name="asset"]:checked');
+      var mandatory = sel && sel.value === 'over2000';
+      // 기본정보 안내 badge
+      assetBadge.style.display = mandatory ? 'inline-flex' : 'none';
+      // 행사 설정 badges
+      exerBadges.forEach(function (b) {
+        if (mandatory) {
+          b.className = 'exer-badge badge badge-danger';
+          b.innerHTML = '<i class="ti ti-alert-triangle"></i>필수';
+        } else {
+          b.className = 'exer-badge badge badge-neutral';
+          b.textContent = '선택';
+        }
+      });
+    }
+    radios.forEach(function (r) { r.addEventListener('change', sync); });
+    sync();
+  })();
+</script>
+
+</body>
+</html>
