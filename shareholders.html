@@ -8,6 +8,13 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
 <link rel="stylesheet" href="./park-ui.css" />
 <link rel="stylesheet" href="./rapidpay.css" />
+<style>
+  .sh-grid2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .drop{ border:1.5px dashed var(--border-strong); border-radius:12px; padding:22px; text-align:center; color:var(--fg-subtle); background:var(--bg-subtle); }
+  .seg-hide{ display:none; }
+  .limit-card{ display:flex; align-items:center; gap:14px; padding:14px 16px; border:1px solid var(--border); border-radius:12px; }
+  .limit-ic{ width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; background:var(--red-3); color:var(--red-11); }
+</style>
 </head>
 <body>
 <aside class="rp-nav">
@@ -48,17 +55,53 @@
 
 <div class="rp-shell"><div class="rp-scrollmain">
 <div class="rp-crumb"><i class="ti ti-users" style="font-size:16px"></i>주주명부 관리<span class="r"><span><i class="ti ti-clock" style="font-size:14px;vertical-align:-2px"></i> 2분 전 업데이트</span><a class="reload" href="#"><i class="ti ti-refresh" style="font-size:14px"></i>새로고침</a></span></div>
-<div class="rp-head"><div><div class="rp-h1">주주명부 관리</div><div class="rp-h1-sub">의결권 기준일 기준 주주 목록</div></div>
-<div class="rp-actions"><div class="rp-srch"><i class="ti ti-search"></i><input placeholder="주주명·번호 검색…"></div><button class="btn btn-surface"><i class="ti ti-filter"></i>필터</button><button class="btn btn-surface"><i class="ti ti-download"></i>내보내기</button><button class="btn btn-kc"><i class="ti ti-upload"></i>명부 업로드</button></div></div>
-<div class="rp-kpis">
-<div class="rp-kpi"><div class="h"><i class="ti ti-users"></i>총 주주</div><div class="v tabnum">12,847<small> 명</small></div><div class="d">기준일 명부</div></div>
-<div class="rp-kpi"><div class="h"><i class="ti ti-user-check"></i>의결권 있는 주주</div><div class="v tabnum">12,312<small> 명</small></div><div class="d"><span class="delta delta-up">95.8%</span></div></div>
-<div class="rp-kpi"><div class="h"><i class="ti ti-scale"></i>총 의결권</div><div class="v tabnum">71,934,000<small> 주</small></div><div class="d">Stage1 유효</div></div>
-<div class="rp-kpi"><div class="h"><i class="ti ti-calendar"></i>적용 기준일</div><div class="v" style="font-size:20px">2027. 02. 05</div><div class="d">제67기</div></div>
+<div class="rp-head"><div><div class="rp-h1">주주명부 관리</div><div class="rp-h1-sub">원본 업로드 → 분류 → 확정 → 투표권자·의결권 설정 → 최종 확정</div></div>
+<div class="rp-actions"><button class="btn btn-surface"><i class="ti ti-download"></i>양식 다운로드</button><button class="btn btn-surface"><i class="ti ti-file-export"></i>내보내기</button></div></div>
+
+<!-- 1. 원본 업로드 -->
+<div class="rp-card" style="margin-bottom:16px">
+  <div class="rp-card-h"><span class="t">1 · 원본 업로드</span><span class="pill2 st-pending">분류중</span></div>
+  <div style="padding:18px">
+    <div class="sh-grid2" style="margin-bottom:14px">
+      <div class="field"><label class="field-label">명의개서 대리인</label>
+        <select class="select"><option>한국예탁결제원</option><option>국민은행 증권대행부</option><option>하나은행 증권대행부</option></select></div>
+      <div class="field"><label class="field-label">주주명부 기준일</label>
+        <input class="input" type="date" value="2027-02-05"></div>
+    </div>
+    <div class="drop"><i class="ti ti-cloud-upload" style="font-size:26px"></i><div style="margin-top:6px;font-size:13.5px">주주명부 원본 파일을 끌어다 놓거나 클릭하여 업로드 (.xlsx, .csv)</div></div>
+    <div style="margin-top:12px;border-top:1px solid var(--border-muted);padding-top:12px">
+      <div style="display:flex;align-items:center;gap:10px;font-size:13px">
+        <i class="ti ti-file-spreadsheet" style="font-size:18px;color:var(--green-11)"></i>
+        <span class="rp-id">제67기_주주명부_원본.xlsx</span>
+        <span class="subtle">2027.02.06 09:12 업로드</span>
+        <span class="pill2 st-pending" style="margin-left:auto">분류중</span>
+      </div>
+      <div class="subtle" style="font-size:12px;margin-top:8px"><i class="ti ti-info-circle" style="font-size:13px;vertical-align:-1px"></i> 업로드 후 분류중 상태로 처리되며, 1~2 영업일 후 확정완료됩니다.</div>
+    </div>
+  </div>
 </div>
-<div class="rp-segtabs" style="margin-bottom:14px"><button class="rp-segtab active">주주 목록</button><button class="rp-segtab">업로드 이력</button><button class="rp-segtab">기준일 관리</button></div>
-<div class="rp-card"><table class="rp-table"><thead><tr><th style="width:36px"></th><th>순위</th><th><i class="ti ti-user"></i>주주명</th><th>구분</th><th style="text-align:right">보유주식수</th><th style="text-align:right">지분율</th><th style="text-align:right">의결권수</th><th style="text-align:right">의결권율</th><th>비고</th></tr></thead><tbody>
-<tr onclick="openDetail()"><td onclick="event.stopPropagation()"><input type="checkbox" class="ck"></td><td class="subtle">1</td><td><div class="cust"><span class="av">국</span><span class="rp-id">국민연금공단</span></div></td><td><span class="pill2 st-unpaid">기관</span></td><td style="text-align:right" class="amt">8,234,000<span class="u">주</span></td><td style="text-align:right">11.45%</td><td style="text-align:right" class="amt">8,234,000<span class="u">주</span></td><td style="text-align:right">11.45%</td><td><span class="badge badge-danger">3%cap</span></td></tr>
+
+<!-- 2. 확정 요약 KPI -->
+<div class="rp-kpis" style="grid-template-columns:repeat(5,1fr)">
+  <div class="rp-kpi"><div class="h"><i class="ti ti-stack-2"></i>총 주식수</div><div class="v tabnum">71,934,000<small> 주</small></div><div class="d">확정 명부</div></div>
+  <div class="rp-kpi"><div class="h"><i class="ti ti-users"></i>총 주주수</div><div class="v tabnum">12,847<small> 명</small></div></div>
+  <div class="rp-kpi"><div class="h"><i class="ti ti-building-bank"></i>운용기관</div><div class="v tabnum">84<small> 곳</small></div></div>
+  <div class="rp-kpi"><div class="h"><i class="ti ti-coins"></i>자금제공기관</div><div class="v tabnum">37<small> 곳</small></div></div>
+  <div class="rp-kpi" style="box-shadow:inset 0 0 0 1px var(--amber-9)"><div class="h"><i class="ti ti-user-question" style="color:var(--amber-11)"></i>미설정 전자투표권자</div><div class="v tabnum" style="color:var(--amber-11)">126<small> 명</small></div><div class="d"><span class="delta" style="background:var(--amber-3);color:var(--amber-11)">설정 필요</span></div></div>
+</div>
+
+<!-- seg tabs -->
+<div class="rp-segtabs" style="margin-bottom:14px">
+  <button class="rp-segtab active" data-seg="list" onclick="seg(this)">주주 목록</button>
+  <button class="rp-segtab" data-seg="merge" onclick="seg(this)">통합 제외</button>
+  <button class="rp-segtab" data-seg="limit" onclick="seg(this)">의결권 제한</button>
+  <button class="rp-segtab" data-seg="final" onclick="seg(this)">최종 확정</button>
+</div>
+
+<!-- 주주 목록 -->
+<div class="seg-pane" data-pane="list">
+  <div class="rp-card"><table class="rp-table"><thead><tr><th style="width:36px"></th><th>순위</th><th><i class="ti ti-user"></i>주주명</th><th>구분</th><th style="text-align:right">보유주식수</th><th style="text-align:right">지분율</th><th style="text-align:right">의결권수</th><th style="text-align:right">의결권율</th><th>투표권자/비고</th></tr></thead><tbody>
+  <tr onclick="openDetail()"><td onclick="event.stopPropagation()"><input type="checkbox" class="ck"></td><td class="subtle">1</td><td><div class="cust"><span class="av">국</span><span class="rp-id">국민연금공단</span></div></td><td><span class="pill2 st-unpaid">기관</span></td><td style="text-align:right" class="amt">8,234,000<span class="u">주</span></td><td style="text-align:right">11.45%</td><td style="text-align:right" class="amt">8,234,000<span class="u">주</span></td><td style="text-align:right">11.45%</td><td><span class="badge badge-danger">3%cap</span></td></tr>
 <tr onclick="openDetail()"><td onclick="event.stopPropagation()"><input type="checkbox" class="ck"></td><td class="subtle">2</td><td><div class="cust"><span class="av">삼</span><span class="rp-id">삼성생명보험</span></div></td><td><span class="pill2 st-unpaid">기관</span></td><td style="text-align:right" class="amt">6,120,500<span class="u">주</span></td><td style="text-align:right">8.51%</td><td style="text-align:right" class="amt">6,120,500<span class="u">주</span></td><td style="text-align:right">8.51%</td><td><span class="subtle">-</span></td></tr>
 <tr onclick="openDetail()"><td onclick="event.stopPropagation()"><input type="checkbox" class="ck"></td><td class="subtle">3</td><td><div class="cust"><span class="av">블</span><span class="rp-id">블랙록 펀드</span></div></td><td><span class="badge badge-accent">외국인</span></td><td style="text-align:right" class="amt">5,402,300<span class="u">주</span></td><td style="text-align:right">7.51%</td><td style="text-align:right" class="amt">5,402,300<span class="u">주</span></td><td style="text-align:right">7.51%</td><td><span class="subtle">-</span></td></tr>
 <tr onclick="openDetail()"><td onclick="event.stopPropagation()"><input type="checkbox" class="ck"></td><td class="subtle">4</td><td><div class="cust"><span class="av">삼</span><span class="rp-id">삼성물산</span></div></td><td><span class="pill2 st-unpaid">기관</span></td><td style="text-align:right" class="amt">4,980,000<span class="u">주</span></td><td style="text-align:right">6.92%</td><td style="text-align:right" class="amt">4,980,000<span class="u">주</span></td><td style="text-align:right">6.92%</td><td><span class="subtle">-</span></td></tr>
@@ -66,16 +109,60 @@
 <tr onclick="openDetail()"><td onclick="event.stopPropagation()"><input type="checkbox" class="ck"></td><td class="subtle">6</td><td><div class="cust"><span class="av">이</span><span class="rp-id">이재용</span></div></td><td><span class="pill2 st-neutral">개인</span></td><td style="text-align:right" class="amt">2,640,000<span class="u">주</span></td><td style="text-align:right">3.67%</td><td style="text-align:right" class="amt">2,640,000<span class="u">주</span></td><td style="text-align:right">3.67%</td><td><span class="subtle">-</span></td></tr>
 <tr onclick="openDetail()"><td onclick="event.stopPropagation()"><input type="checkbox" class="ck"></td><td class="subtle">7</td><td><div class="cust"><span class="av">대</span><span class="rp-id">대한민국 정부</span></div></td><td><span class="pill2 st-pending">정부</span></td><td style="text-align:right" class="amt">1,820,000<span class="u">주</span></td><td style="text-align:right">2.53%</td><td style="text-align:right" class="amt">1,820,000<span class="u">주</span></td><td style="text-align:right">2.53%</td><td><span class="badge badge-danger">의결권 제한</span></td></tr>
 <tr onclick="openDetail()"><td onclick="event.stopPropagation()"><input type="checkbox" class="ck"></td><td class="subtle">8</td><td><div class="cust"><span class="av">미</span><span class="rp-id">미래에셋자산운용</span></div></td><td><span class="pill2 st-unpaid">기관</span></td><td style="text-align:right" class="amt">1,540,800<span class="u">주</span></td><td style="text-align:right">2.14%</td><td style="text-align:right" class="amt">1,540,800<span class="u">주</span></td><td style="text-align:right">2.14%</td><td><span class="subtle">-</span></td></tr>
-<tr onclick="openDetail()"><td onclick="event.stopPropagation()"><input type="checkbox" class="ck"></td><td class="subtle">9</td><td><div class="cust"><span class="av">홍</span><span class="rp-id">홍길동</span></div></td><td><span class="pill2 st-neutral">개인</span></td><td style="text-align:right" class="amt">980,400<span class="u">주</span></td><td style="text-align:right">1.36%</td><td style="text-align:right" class="amt">980,400<span class="u">주</span></td><td style="text-align:right">1.36%</td><td><span class="subtle">-</span></td></tr>
+<tr onclick="openDetail()"><td onclick="event.stopPropagation()"><input type="checkbox" class="ck"></td><td class="subtle">9</td><td><div class="cust"><span class="av">홍</span><span class="rp-id">홍길동</span></div></td><td><span class="pill2 st-neutral">개인</span></td><td style="text-align:right" class="amt">980,400<span class="u">주</span></td><td style="text-align:right">1.36%</td><td style="text-align:right" class="amt">980,400<span class="u">주</span></td><td style="text-align:right">1.36%</td><td><button class="btn btn-kc btn-sm" onclick="event.stopPropagation()" style="height:26px;padding:0 8px">투표권자 설정</button></td></tr>
 <tr onclick="openDetail()"><td onclick="event.stopPropagation()"><input type="checkbox" class="ck"></td><td class="subtle">10</td><td><div class="cust"><span class="av">피</span><span class="rp-id">피델리티</span></div></td><td><span class="badge badge-accent">외국인</span></td><td style="text-align:right" class="amt">760,000<span class="u">주</span></td><td style="text-align:right">1.06%</td><td style="text-align:right" class="amt">760,000<span class="u">주</span></td><td style="text-align:right">1.06%</td><td><span class="subtle">-</span></td></tr>
 <tr onclick="openDetail()"><td onclick="event.stopPropagation()"><input type="checkbox" class="ck"></td><td class="subtle">11</td><td><div class="cust"><span class="av">자</span><span class="rp-id">자기주식</span></div></td><td><span class="pill2 st-neutral">-</span></td><td style="text-align:right" class="amt">640,000<span class="u">주</span></td><td style="text-align:right">0.89%</td><td style="text-align:right" class="amt">0<span class="u">주</span></td><td style="text-align:right">0.00%</td><td><span class="badge badge-danger">의결권 없음</span></td></tr>
 <tr onclick="openDetail()"><td onclick="event.stopPropagation()"><input type="checkbox" class="ck"></td><td class="subtle">12</td><td><div class="cust"><span class="av">우</span><span class="rp-id">우리사주조합</span></div></td><td><span class="pill2 st-unpaid">기관</span></td><td style="text-align:right" class="amt">520,000<span class="u">주</span></td><td style="text-align:right">0.72%</td><td style="text-align:right" class="amt">520,000<span class="u">주</span></td><td style="text-align:right">0.72%</td><td><span class="subtle">-</span></td></tr>
-<tr onclick="openDetail()"><td onclick="event.stopPropagation()"><input type="checkbox" class="ck"></td><td class="subtle">13</td><td><div class="cust"><span class="av">김</span><span class="rp-id">김영희</span></div></td><td><span class="pill2 st-neutral">개인</span></td><td style="text-align:right" class="amt">410,200<span class="u">주</span></td><td style="text-align:right">0.57%</td><td style="text-align:right" class="amt">410,200<span class="u">주</span></td><td style="text-align:right">0.57%</td><td><span class="subtle">-</span></td></tr>
+<tr onclick="openDetail()"><td onclick="event.stopPropagation()"><input type="checkbox" class="ck"></td><td class="subtle">13</td><td><div class="cust"><span class="av">김</span><span class="rp-id">김영희</span></div></td><td><span class="pill2 st-neutral">개인</span></td><td style="text-align:right" class="amt">410,200<span class="u">주</span></td><td style="text-align:right">0.57%</td><td style="text-align:right" class="amt">410,200<span class="u">주</span></td><td style="text-align:right">0.57%</td><td><button class="btn btn-kc btn-sm" onclick="event.stopPropagation()" style="height:26px;padding:0 8px">투표권자 설정</button></td></tr>
 <tr onclick="openDetail()"><td onclick="event.stopPropagation()"><input type="checkbox" class="ck"></td><td class="subtle">14</td><td><div class="cust"><span class="av">국</span><span class="rp-id">국부펀드(GIC)</span></div></td><td><span class="pill2 st-pending">정부</span></td><td style="text-align:right" class="amt">7,820,400<span class="u">주</span></td><td style="text-align:right">10.87%</td><td style="text-align:right" class="amt">7,820,400<span class="u">주</span></td><td style="text-align:right">10.87%</td><td><span class="subtle">-</span></td></tr>
 </tbody></table></div>
-<div class="rp-pager"><span>12,847명 중 14명</span><div class="rp-pages"><span class="rp-pg"><i class="ti ti-chevron-left"></i></span><span class="rp-pg active">1</span><span class="rp-pg">2</span><span class="rp-pg">3</span><span class="rp-pg">…</span><span class="rp-pg">918</span><span class="rp-pg"><i class="ti ti-chevron-right"></i></span></div></div>
+  <div class="rp-pager"><span>12,847명 중 14명 · <b style="color:var(--amber-11)">미설정 126명</b></span><div class="rp-pages"><span class="rp-pg"><i class="ti ti-chevron-left"></i></span><span class="rp-pg active">1</span><span class="rp-pg">2</span><span class="rp-pg">…</span><span class="rp-pg">918</span><span class="rp-pg"><i class="ti ti-chevron-right"></i></span></div></div>
+</div>
+
+<!-- 통합 제외 -->
+<div class="seg-pane seg-hide" data-pane="merge">
+  <div class="rp-card"><div class="rp-card-h"><span class="t">통합 처리 / 제외 설정</span><span class="subtle" style="font-size:12px">주민등록번호 · 사업자번호 기준 통합</span></div>
+  <div style="padding:6px 0">
+  <div class="alert alert-info" style="margin:14px 18px"><i class="ti ti-info-circle"></i><div><div class="alert-title">통합 기준</div><div class="alert-desc">개인은 주민등록번호, 기관·법인은 투표권자 사업자번호 기준으로 자동 통합됩니다. 잘못 통합된 경우 아래에서 제외하세요.</div></div></div>
+  <table class="rp-table"><thead><tr><th>통합 그룹</th><th>통합 기준</th><th>포함 내역</th><th style="text-align:right">합산 의결권</th><th>처리</th></tr></thead><tbody>
+  <tr><td class="rp-id">○○자산운용 (펀드 12)</td><td>사업자번호 220-81-xxxxx</td><td class="subtle">펀드 계좌 12건 통합</td><td style="text-align:right" class="amt">3,540,000주</td><td><span class="pill2 st-success">정상</span></td></tr>
+  <tr><td class="rp-id">△△증권 (위탁계좌)</td><td>사업자번호 116-81-xxxxx</td><td class="subtle">고객 위탁분 오통합 의심</td><td style="text-align:right" class="amt">820,000주</td><td><button class="btn btn-surface btn-sm" style="height:28px">통합 제외</button></td></tr>
+  <tr><td class="rp-id">우리사주조합장 김○○</td><td>주민등록번호</td><td class="subtle">개인 보유분과 합산됨</td><td style="text-align:right" class="amt">95,000주</td><td><button class="btn btn-surface btn-sm" style="height:28px">통합 제외</button></td></tr>
+  </tbody></table></div></div>
+</div>
+
+<!-- 의결권 제한 -->
+<div class="seg-pane seg-hide" data-pane="limit">
+  <div class="rp-card"><div class="rp-card-h"><span class="t">의결권 제한</span><span class="badge badge-info"><i class="ti ti-scale"></i>법무팀 확인 기준</span></div>
+  <div style="padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div class="limit-card"><span class="limit-ic"><i class="ti ti-building"></i></span><div style="flex:1"><div style="font-weight:600">자사주</div><div class="subtle" style="font-size:12px">640,000주 · 의결권 없음</div></div><span class="pill2 st-cancel">제한</span></div>
+    <div class="limit-card"><span class="limit-ic"><i class="ti ti-arrows-exchange"></i></span><div style="flex:1"><div style="font-weight:600">상호주</div><div class="subtle" style="font-size:12px">상호출자 2사 · 1,120,000주</div></div><span class="pill2 st-cancel">제한</span></div>
+    <div class="limit-card"><span class="limit-ic"><i class="ti ti-ban"></i></span><div style="flex:1"><div style="font-weight:600">무효주</div><div class="subtle" style="font-size:12px">실효·미달 84,000주</div></div><span class="pill2 st-cancel">제한</span></div>
+    <div class="limit-card"><span class="limit-ic" style="background:var(--amber-3);color:var(--amber-11)"><i class="ti ti-crown"></i></span><div style="flex:1"><div style="font-weight:600">최대주주 및 특수관계인</div><div class="subtle" style="font-size:12px">감사위원 선임 3%cap 대상 · 9인</div></div><span class="pill2 st-pending">부분 제한</span></div>
+  </div>
+  <div class="subtle" style="font-size:12px;padding:0 18px 18px"><i class="ti ti-info-circle" style="font-size:13px;vertical-align:-1px"></i> 자사주·상호주·무효주·최대주주 및 특수관계인은 회사 법무팀 확인 내용 기준으로 처리되었습니다.</div>
+  </div>
+</div>
+
+<!-- 최종 확정 -->
+<div class="seg-pane seg-hide" data-pane="final">
+  <div class="rp-card"><div style="padding:24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px">
+    <div style="width:54px;height:54px;border-radius:14px;background:var(--green-3);color:var(--green-11);display:flex;align-items:center;justify-content:center"><i class="ti ti-checks" style="font-size:28px"></i></div>
+    <div class="t-h2">최종 명부 확정</div>
+    <div class="muted" style="max-width:460px;line-height:1.6">통합 제외 및 의결권 제한 설정을 반영하여 명부를 확정합니다. 확정된 명부만 주총 생성 시 선택할 수 있습니다.</div>
+    <div style="display:flex;gap:20px;margin:6px 0 4px">
+      <div><div class="subtle" style="font-size:12px">유효 의결권</div><div class="amt" style="font-size:18px">71,934,000주</div></div>
+      <div><div class="subtle" style="font-size:12px">제한 처리</div><div class="amt" style="font-size:18px">1,844,000주</div></div>
+      <div><div class="subtle" style="font-size:12px">통합 제외 대기</div><div class="amt" style="font-size:18px;color:var(--amber-11)">2건</div></div>
+    </div>
+    <button class="btn btn-kc"><i class="ti ti-lock-check"></i>최종 내용 확정</button>
+  </div></div>
+</div>
+
 <div class="rp-ask"><span class="logo"><i class="ti ti-vote" style="font-size:13px"></i></span><input placeholder="주총·의결권에 대해 무엇이든 물어보세요…" /><span class="go"><i class="ti ti-arrow-up"></i></span></div>
 </div></div>
+
+<!-- 주주 상세 드로어 -->
 <div class="rp-overlay" id="detail" style="display:none"><div class="rp-drawer">
 <div class="rp-drawer-h"><div style="font-weight:700;font-size:15px">주주 상세</div><button class="btn btn-plain btn-icon" onclick="closeDetail()"><i class="ti ti-x"></i></button></div>
 <div class="rp-drawer-b">
@@ -84,14 +171,19 @@
 <div class="rp-card" style="padding:12px"><div class="subtle" style="font-size:12px">보유주식수</div><div class="amt" style="font-size:18px">8,234,000주</div></div>
 <div class="rp-card" style="padding:12px"><div class="subtle" style="font-size:12px">지분율</div><div class="amt" style="font-size:18px">11.45%</div></div>
 <div class="rp-card" style="padding:12px"><div class="subtle" style="font-size:12px">의결권수</div><div class="amt" style="font-size:18px">8,234,000주</div></div>
-<div class="rp-card" style="padding:12px"><div class="subtle" style="font-size:12px">의결권율</div><div class="amt" style="font-size:18px">11.45%</div></div>
+<div class="rp-card" style="padding:12px"><div class="subtle" style="font-size:12px">투표권자</div><div class="amt" style="font-size:18px;color:var(--green-11)">설정됨</div></div>
 </div>
 <div class="alert alert-warning" style="margin-bottom:16px"><i class="ti ti-alert-triangle"></i><div><div class="alert-title">감사위원 3%cap 대상</div><div class="alert-desc">제4호 감사위원 선임 의안에서 의결권이 3%로 제한됩니다.</div></div></div>
-<div style="font-weight:600;margin-bottom:8px">사전투표 행사 현황</div>
-<div style="font-size:13px;color:var(--fg-muted)">제1호 <b style="color:var(--green-11)">찬성</b> · 제2호 <b style="color:var(--green-11)">찬성</b> · 제4호 <b style="color:var(--red-11)">반대</b> · 채널: KSD 전자투표</div>
 </div>
-<div class="rp-drawer-f"><button class="btn btn-surface" style="flex:1" onclick="closeDetail()">닫기</button><button class="btn btn-kc" style="flex:1">명부에서 보기</button></div>
+<div class="rp-drawer-f"><button class="btn btn-surface" style="flex:1" onclick="closeDetail()">닫기</button><button class="btn btn-kc" style="flex:1">투표권자 설정</button></div>
 </div></div>
-<script>function openDetail(){document.getElementById('detail').style.display='flex';}function closeDetail(){document.getElementById('detail').style.display='none';}document.getElementById('detail').addEventListener('click',function(e){if(e.target===this)closeDetail();});document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDetail();});</script>
+
+<script>
+function seg(b){document.querySelectorAll('.rp-segtab').forEach(function(x){x.classList.remove('active');});b.classList.add('active');var t=b.dataset.seg;document.querySelectorAll('.seg-pane').forEach(function(p){p.classList.toggle('seg-hide',p.dataset.pane!==t);});}
+function openDetail(){document.getElementById('detail').style.display='flex';}
+function closeDetail(){document.getElementById('detail').style.display='none';}
+document.getElementById('detail').addEventListener('click',function(e){if(e.target===this)closeDetail();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDetail();});
+</script>
 </body>
 </html>
